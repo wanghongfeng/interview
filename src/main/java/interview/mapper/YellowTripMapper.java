@@ -47,7 +47,7 @@ public class YellowTripMapper extends Mapper<LongWritable,Text,Text, YellowGreen
         context.write(new Text(monthNum+""), flowBean);
     }
     public static boolean checkData(YellowGreenTripBean flowBean){
-//        try {
+        try {
             DecimalFormat df = new DecimalFormat("#.00");
 
             if (Double.valueOf(flowBean.getTotalAmount())<0.01){
@@ -64,10 +64,10 @@ public class YellowTripMapper extends Mapper<LongWritable,Text,Text, YellowGreen
             }
             flowBean.setSpeed(df.format(speed));
             return true;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return false;
-//        }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     public static long getDistanceTimes(String begin, String end) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
